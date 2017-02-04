@@ -50,7 +50,13 @@ SQL;
 		<?php foreach ($mensagens as $mensagem) : ?>
 			<div style="border: 1px solid; margin: 5px 0px;">
 				<strong><?php echo $mensagem['nome']; ?></strong>: 
-				<?php echo $mensagem['mensagem']; ?>
+				<?php echo
+					preg_replace(
+						'/\@([a-zA-Z0-9_\-\.]+)/',
+						'<a href="perfil.php?usuario=$1">@$1</a>',
+						$mensagem['mensagem']
+					);
+				?>
 			</div>
 		<?php endforeach; ?>
 	</p>
