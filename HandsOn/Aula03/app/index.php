@@ -24,7 +24,8 @@ SQL;
 
 	$usuario = getUnicoResultado($query);
 	if (! count($usuario)) {
-		header('Location: index.php?mensagem_erro=Login sem sucesso');
+		setFlashMessage('erro', 'Login sem sucesso');
+		header('Location: index.php');
 		die();
 	}
 	
@@ -35,9 +36,9 @@ SQL;
 <head>
 	<title>Home</title>
 
-	<?php if (isset($_GET['mensagem_erro'])) : ?>
+	<?php if ($msg = getFlashMessage('erro')) : ?>
 	<script>
-		alert("<?php echo $_GET['mensagem_erro']; ?>");
+		alert("<?php echo $msg; ?>");
 	</script>
 	<?php endif; ?>
 </head>

@@ -4,7 +4,8 @@ session_start();
 
 function verifcarLogin() {
 	if (! isset($_SESSION['usuario'])) {
-		header('Location: index.php?mensagem_erro=Você não tem permissão.');
+		setFlashMessage('erro', 'Você não tem permissão.');
+		header('Location: index.php');
 		die();
 	}
 }
@@ -21,16 +22,20 @@ function login(array $usuario, $pagina = 'inicio.php') {
 	die();
 }
 
-/**
- * $_SESSION['messages']['id']
- */
 function setFlashMessage($id, $message) {
-
+	if (! isset($_SESSION['messages'])) {
+		$_SESSION['messages'] = [];
+	}
+	$_SESSION['messages'][$id] = $message;
 }
 
-/**
- * $_SESSION['messages']['id'] apagar antes de retornar
- */
 function getFlashMessage($id) {
+	$msg = null;
 
+	if (isset($_SESSION['messages'][$id])) {
+		$msg = $_SESSION['messages'][$id];
+		unset($_SESSION['messages'][$id]);
+	}
+
+	return $msg;
 }

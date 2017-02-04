@@ -15,3 +15,7 @@ function getUnicoResultado($query) {
 		break;
 	}
 }
+
+function executaQuery($query) {
+	mysql_query($query);
+}

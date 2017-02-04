@@ -1,9 +1,9 @@
 <?php
 // criar_usuario.php
+require_once 'includes/operacoes_banco.php';
+require_once 'includes/operacoes_sessao.php';
 	
 if ($_POST) {
-	require_once 'conexao.php';
-
 	$nome = $_POST['nome'];
 	$email = $_POST['email'];
 	$senha = md5($_POST['senha']);
@@ -17,9 +17,10 @@ WHERE
 	email = '$email'
 SQL;
 
-	$result = mysql_query($query);
-	if (mysql_num_rows($result) > 0) {
-		header('Location: index.php?error=Já existe um usuário cadastrado com esse email.');
+	$result = getUnicoResultado($query);
+	if (count($result)) {
+		setFlashMessage('erro', 'Já existe um usuário cadastrado com esse email.');
+		header('Location: index.php');
 		die();
 	}
 
@@ -30,7 +31,7 @@ VALUES
 	('$nome', '$email', '$senha')
 SQL;
 
-	mysql_query($query);
+	executaQuery($query);
 }
 
 ?>
@@ -38,9 +39,9 @@ SQL;
 <head>
 	<title>Cadastrar Usuários</title>
 
-	<?php if (isset($_GET['error'])) : ?>
+	<?php if ($msg = getFlashMessage('erro')) : ?>
 	<script>
-		alert("<?php echo $_GET['error']; ?>");
+		alert("<?php echo $msg; ?>");
 	</script>
 	<?php endif; ?>
 </head>
