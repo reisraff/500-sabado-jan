@@ -16,6 +16,20 @@ function getUnicoResultado($query) {
 	}
 }
 
+function getResultados($query) {
+	$resultado = mysql_query($query);
+	if (! mysql_num_rows($resultado)) {
+		return [];
+	}
+
+	$return = [];
+	while ($linha = mysql_fetch_assoc($resultado)) {
+		$return[] = $linha;
+	}
+
+	return $return;
+}
+
 function executaQuery($query) {
 	mysql_query($query);
 }

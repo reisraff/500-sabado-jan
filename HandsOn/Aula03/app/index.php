@@ -8,7 +8,7 @@ if (isset($_GET['logout'])) {
 }
 
 if ($_POST) {
-	$email = $_POST['email'];
+	$usuario = $_POST['usuario'];
 	$senha = md5($_POST['senha']);
 
 	$query = <<<SQL
@@ -17,7 +17,7 @@ SELECT
 FROM
 	usuarios
 WHERE
-	email = "$email"
+	usuario = "$usuario"
 	AND senha = "$senha"
 LIMIT 1
 SQL;
@@ -44,7 +44,7 @@ SQL;
 </head>
 <body>
 	<form method="POST" action="?">
-		<label>Email: </label><input type="text" name="email" /><br />
+		<label>Usuário: </label><input type="text" name="usuario" /><br />
 		<label>Senha: </label><input type="password" name="senha" /><br />
 		<input type="submit" value="Login" /><br />
 	</form>
