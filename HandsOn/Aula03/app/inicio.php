@@ -13,8 +13,7 @@ VALUES($id_usuario, '$mensagem')
 SQL;
 
 	executaQuery($query);
-	header('Location: inicio.php');
-	die();
+	redirect('inicio.php');
 }
 ?>
 

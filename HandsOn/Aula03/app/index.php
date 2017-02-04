@@ -1,7 +1,5 @@
 <?php
-
-require 'includes/operacoes_sessao.php';
-require 'includes/operacoes_banco.php';
+require_once 'includes/header.php';
 
 if (isset($_GET['logout'])) {
 	logout();
@@ -25,24 +23,13 @@ SQL;
 	$usuario = getUnicoResultado($query);
 	if (! count($usuario)) {
 		setFlashMessage('erro', 'Login sem sucesso');
-		header('Location: index.php');
-		die();
+		redirect('index.php');
 	}
 	
 	login($usuario);
 }
 
-?><html>
-<head>
-	<title>Home</title>
-
-	<?php if ($msg = getFlashMessage('erro')) : ?>
-	<script>
-		alert("<?php echo $msg; ?>");
-	</script>
-	<?php endif; ?>
-</head>
-<body>
+?>
 	<form method="POST" action="?">
 		<label>Usuário: </label><input type="text" name="usuario" /><br />
 		<label>Senha: </label><input type="password" name="senha" /><br />
@@ -52,5 +39,5 @@ SQL;
 	<p>
 		<a href="criar_usuario.php">Registre-se Aqui</a>
 	</p>
-</body>
-</html>
+
+<?php require_once 'includes/footer.php'; ?>

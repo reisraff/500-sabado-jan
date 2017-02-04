@@ -1,25 +1,23 @@
 <?php
 // operacoes_sessao.php
+require_once 'operacoes_gerais.php';
 session_start();
 
 function verifcarLogin() {
 	if (! isset($_SESSION['usuario'])) {
 		setFlashMessage('erro', 'Você não tem permissão.');
-		header('Location: index.php');
-		die();
+		redirect('index.php');
 	}
 }
 
 function logout() {
 	session_destroy();
-	header('Location: index.php');
-	die();
+	redirect('index.php');
 }
 
 function login(array $usuario, $pagina = 'inicio.php') {
 	$_SESSION['usuario'] = $usuario;
-	header('Location: ' . $pagina);
-	die();
+	redirect($pagina);
 }
 
 function setFlashMessage($id, $message) {

@@ -1,7 +1,6 @@
 <?php
 // criar_usuario.php
-require_once 'includes/operacoes_banco.php';
-require_once 'includes/operacoes_sessao.php';
+require_once 'includes/header.php';
 	
 if ($_POST) {
 	$nome = $_POST['nome'];
@@ -22,8 +21,7 @@ SQL;
 	$result = getUnicoResultado($query);
 	if (count($result)) {
 		setFlashMessage('erro', 'Já existe um usuário cadastrado com esse email/usuario.');
-		header('Location: index.php');
-		die();
+		redirect('index.php');
 	}
 
 	$query = <<<SQL
@@ -34,21 +32,10 @@ VALUES
 SQL;
 
 	executaQuery($query);
-	header('Location: index.php');
+	redirect('index.php');
 }
 
 ?>
-<html>
-<head>
-	<title>Cadastrar Usuários</title>
-
-	<?php if ($msg = getFlashMessage('erro')) : ?>
-	<script>
-		alert("<?php echo $msg; ?>");
-	</script>
-	<?php endif; ?>
-</head>
-<body>
 	<form method="POST">
 		<label>Nome: </label><input type="text" name="nome" /><br />
 		<label>Email: </label><input type="text" name="email" /><br />
@@ -60,5 +47,5 @@ SQL;
 	<p>
 		<a href="index.php">Voltar</a>
 	</p>
-</body>
-</html>
+
+<?php require_once 'includes/footer.php'; ?>

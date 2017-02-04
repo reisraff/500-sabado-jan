@@ -15,9 +15,11 @@ require_once 'includes/operacoes_sessao.php';
 </head>
 <body>
 	<p>
+		<?php if (isset($_SESSION['usuario'])) : ?>
 		<a href="inicio.php">Inicio</a> | 
 		<a href="perfil.php?usuario=<?php echo $_SESSION['usuario']['usuario']; ?>">Perfil</a> | 
 		<a href="index.php?logout=true">Logout</a>
+		<?php endif; ?>
 	</p>
 
 	<p>
