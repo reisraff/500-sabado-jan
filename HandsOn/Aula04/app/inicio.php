@@ -41,13 +41,40 @@ FROM
 	INNER JOIN
 		usuarios AS u
 		ON u.id = m.usuario_id
+WHERE
+	m.usuario_id = {$_SESSION['usuario']['id']}
+	OR m.usuario_id IN (
+		SELECT
+			seu_id
+		FROM
+			seguindo
+		WHERE
+			meu_id = {$_SESSION['usuario']['id']}
+	)
 ORDER BY
 	m.id DESC
 SQL;
 			$mensagens = getResultados($query);
 		?>
 
-		<?php foreach ($mensagens as $mensagem) : ?>
+		<?php
+			$counter = 0;
+			$banner = 1;
+			foreach ($mensagens as $mensagem) : 
+			$counter++;
+		?>
+
+			<?php if ($counter % 3 == 0) : ?>
+				<?php if (isset($_COOKIE['banner' . $banner])) : ?>
+					<p style="height: 50px; border: 1px dashed;">
+						<?php
+							echo $_COOKIE['banner' . $banner];
+							$banner++;
+						?>
+					</p>
+				<?php endif ?>
+			<?php endif ?> 
+
 			<div style="border: 1px solid; margin: 5px 0px;">
 				<strong><?php echo $mensagem['nome']; ?></strong>: 
 				<?php echo
