@@ -3,10 +3,47 @@
 require_once 'includes/header.php';
 	
 if ($_POST) {
+
+	$requeridos = [
+		'nome',
+		'email',
+		'usuario',
+	];
+	$mensagem_erro = [];
+
+	if ($_FILES['imagem']['size'] == 0) {
+		$mensagem_erro[] = 'É obrigatório enviar uma imagem';
+	}
+	foreach ($requeridos as $value) {
+		if (empty($_POST[$value])) {
+			$mensagem_erro[] = 'é obrigatório preencher o campo ' . $value;
+		}
+	}
+
+	if (count($mensagem_erro)) {
+		setFlashMessage('erro', implode('\n', $mensagem_erro));
+		redirect('criar_usuario.php');
+	}
+
 	$nome = $_POST['nome'];
 	$email = $_POST['email'];
 	$usuario = $_POST['usuario'];
 	$senha = md5($_POST['senha']);
+
+	$ext = function ($fileName) {
+		return substr($fileName, strrpos($fileName, '.') + 1);
+	};
+
+	if ($ext($_FILES['imagem']['name']) != 'jpg') {
+		setFlashMessage('erro', 'A extensão da imagem deve ser JPG');
+		redirect('criar_usuario.php');
+	}
+
+	$fullPathImage = __DIR__
+		. '/imagens/'
+		. $usuario
+		. '.jpg';
+	move_uploaded_file($_FILES['imagem']['tmp_name'], $fullPathImage);
 
 	$query = <<<SQL
 SELECT
@@ -36,7 +73,7 @@ SQL;
 }
 
 ?>
-	<form method="POST">
+	<form method="POST" enctype="multipart/form-data">
 		<div class="form-group">
 		  <input type="text"
 				 class="form-control"
@@ -64,6 +101,12 @@ SQL;
 				 placeholder="Senha"
 				 aria-describedby="basic-addon1"
 				 name="senha">
+		</div>
+		<div class="form-group">
+		  <input type="file"
+				 class="form-control"
+				 aria-describedby="basic-addon1"
+				 name="imagem">
 		</div>
 		
 		<div class="form-group">
