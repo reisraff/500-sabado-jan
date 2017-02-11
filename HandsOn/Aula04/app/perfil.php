@@ -44,7 +44,7 @@ SQL;
 					if ($_SESSION['usuario']['usuario'] != $usuario['usuario']) :
 				?>
 					<?php if (count(getResultados($query))) : ?>
-						<a class="btn btn-primary" href="operacao_seguir.php?operacao=deixar_seguir&usuario_id=<?php echo $usuario['id']; ?>">Deixar de Seguir</a>
+						<a class="btn btn-danger" href="operacao_seguir.php?operacao=deixar_seguir&usuario_id=<?php echo $usuario['id']; ?>">Deixar de Seguir</a>
 					<?php else : ?>
 						<a class="btn btn-primary" href="operacao_seguir.php?operacao=seguir&usuario_id=<?php echo $usuario['id']; ?>">Seguir</a>
 					<?php endif ?>

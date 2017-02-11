@@ -41,7 +41,8 @@ require_once 'includes/operacoes_sessao.php';
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
           	<?php if (isset($_SESSION['usuario'])) : ?>
-	            <li class="active"><a href="inicio.php">Inicio</a></li>
+	            <li><a href="inicio.php">Inicio</a></li>
+              <li><a href="amigos.php">Amigos</a></li>
 	            <li><a href="perfil.php?usuario=<?php echo $_SESSION['usuario']['usuario']; ?>">Perfil</a></li>
 	            <li><a href="index.php?logout=true">Logout</a></li>
             <?php endif; ?>
