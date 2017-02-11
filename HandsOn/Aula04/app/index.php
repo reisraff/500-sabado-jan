@@ -31,9 +31,29 @@ SQL;
 
 ?>
 	<form method="POST" action="?">
-		<label>Usuário: </label><input type="text" name="usuario" /><br />
-		<label>Senha: </label><input type="password" name="senha" /><br />
-		<input type="submit" value="Login" /><br />
+
+		<div class="input-group">
+		  <input type="text"
+				 class="form-control"
+				 placeholder="Usuário"
+				 aria-describedby="basic-addon1"
+				 name="usuario">
+		</div>
+
+		<div class="input-group">
+		  <input type="text"
+				 class="form-control"
+				 placeholder="Senha"
+				 aria-describedby="basic-addon1"
+				 name="password">
+		</div>
+
+		<div class="input-group">
+		  <input type="submit"
+				 class="form-control"
+				 aria-describedby="basic-addon1"
+				 value="Login">
+		</div>
 	</form>
 
 	<p>

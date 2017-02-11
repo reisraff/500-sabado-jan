@@ -75,15 +75,17 @@ SQL;
 				<?php endif ?>
 			<?php endif ?> 
 
-			<div style="border: 1px solid; margin: 5px 0px;">
-				<strong><?php echo $mensagem['nome']; ?></strong>: 
-				<?php echo
-					preg_replace(
-						'/\@([a-zA-Z0-9_\-\.]+)/',
-						'<a href="perfil.php?usuario=$1">@$1</a>',
-						$mensagem['mensagem']
-					);
-				?>
+			<div class="panel panel-default">
+				<div class="panel-body">
+				    <strong><?php echo $mensagem['nome']; ?></strong>: 
+				    <?php echo
+					    preg_replace(
+						    '/\@([a-zA-Z0-9_\-\.]+)/',
+						    '<a href="perfil.php?usuario=$1">@$1</a>',
+						    $mensagem['mensagem']
+					    );
+				    ?>
+				</div>
 			</div>
 		<?php endforeach; ?>
 	</p>
