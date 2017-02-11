@@ -22,12 +22,17 @@ SQL;
 
 	<p>
 		<form method="POST">
-			<label>Mensagem</label>
-			<br />
-			<textarea name="mensagem" cols="60"></textarea>
-			<p>
-				<input type="submit" value="Criar Mensagem" />
-			</p>
+
+
+			<div class="form-group">
+			  <textarea class="form-control"
+			  			name="mensagem"
+			  			rows="3"></textarea>
+			</div>
+
+			<div class="form-group">
+			  <button type="submit" class="btn btn-primary">Criar Mensagem</button>
+			</div>
 		</form>
 	</p>
 

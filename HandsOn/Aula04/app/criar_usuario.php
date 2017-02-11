@@ -37,11 +37,38 @@ SQL;
 
 ?>
 	<form method="POST">
-		<label>Nome: </label><input type="text" name="nome" /><br />
-		<label>Email: </label><input type="text" name="email" /><br />
-		<label>Usuário: </label><input type="text" name="usuario" /><br />
-		<label>Senha: </label><input type="password" name="senha" /><br />
-		<input type="submit" value="Cadastrar" /><br />
+		<div class="form-group">
+		  <input type="text"
+				 class="form-control"
+				 placeholder="Nome"
+				 aria-describedby="basic-addon1"
+				 name="nome">
+		</div>
+		<div class="form-group">
+		  <input type="text"
+				 class="form-control"
+				 placeholder="Email"
+				 aria-describedby="basic-addon1"
+				 name="email">
+		</div>
+		<div class="form-group">
+		  <input type="text"
+				 class="form-control"
+				 placeholder="Usuário"
+				 aria-describedby="basic-addon1"
+				 name="usuario">
+		</div>
+		<div class="form-group">
+		  <input type="password"
+				 class="form-control"
+				 placeholder="Senha"
+				 aria-describedby="basic-addon1"
+				 name="senha">
+		</div>
+		
+		<div class="form-group">
+		  <button type="submit" class="btn btn-primary">Criar Usuário</button>
+		</div>
 	</form>
 
 	<p>

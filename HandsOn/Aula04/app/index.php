@@ -31,28 +31,23 @@ SQL;
 
 ?>
 	<form method="POST" action="?">
-
-		<div class="input-group">
+		<div class="form-group">
 		  <input type="text"
 				 class="form-control"
 				 placeholder="Usuário"
 				 aria-describedby="basic-addon1"
 				 name="usuario">
 		</div>
-
-		<div class="input-group">
-		  <input type="text"
+		<div class="form-group">
+		  <input type="password"
 				 class="form-control"
 				 placeholder="Senha"
 				 aria-describedby="basic-addon1"
-				 name="password">
+				 name="senha">
 		</div>
-
-		<div class="input-group">
-		  <input type="submit"
-				 class="form-control"
-				 aria-describedby="basic-addon1"
-				 value="Login">
+		
+		<div class="form-group">
+		  <button type="submit" class="btn btn-primary">Login</button>
 		</div>
 	</form>
 
